@@ -49,10 +49,16 @@ let sanFranAirport =
 //     .bindPopup("<h2>" + feature.properties.name + "</h2> <p>" + 
 //     feature.properties.city + ", " + feature.properties.country + "</p>" );
 //   }
+// }).addTo(map);
 
-
-
+//Grabbing our GeoJSON data & display airport code, airport name
+L.geoJson(sanFranAirport, {
+  onEachFeature: function(feature, layer) {
+    console.log(layer);
+    layer.bindPopup("<h2> Airport code: " + feature.properties.faa + "</h2> <hr> <p> Airport name: " + feature.properties.name + "</p>" );
+  }
 }).addTo(map);
+
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
