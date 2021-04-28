@@ -40,9 +40,46 @@ L.control.layers(baseMaps).addTo(map);
 // Retrieve the earthquake GeoJSON data.
 let earthquake7day = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
+// Create a style for the lines.
+let myStyle = {
+  fillColor: "#ffffa1",
+  color: "blue", //stroke color
+  weight: 1
+}
+
+
+
+
 // Grabbing our GeoJSON data & styling as element
 d3.json(earthquake7day).then(function(data) {
-  console.log(data);
+  //Create function to contain all style parameters
+  function styleInfo(feature) {
+    return {
+      opacity: 1,
+      fillOpacity: 1,
+      fillColor: "#ffae42",
+      color: "#000000",
+      radius: getRadius(feature.properties.mag),
+      stroke: true,
+      weight: 0.5
+    };
+  }
   // Creating a GeoJSON layer with the retrieved data.
-  L.geoJson(data).addTo(map);
+  L.geoJson(data, {
+    // Make markers circles
+    pointToLayer: function(feature, latlng) {
+      console.log(data);
+      return L.circleMarker(latlng);
+    },
+    // Match style to function above
+    style: styleInfo
+  }).addTo(map);
 });
+
+//Create a get radius function to calculate raidus for each earthquake. If radius blank, consider it 1 so that it plots
+function getRadius(magnitude) {
+  if (magnitude === 0) {
+    return 1;
+  }
+  return magnitude * 4;
+}
