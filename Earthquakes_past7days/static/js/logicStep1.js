@@ -24,21 +24,21 @@ let satelliteStreets = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/
 // Create a base layer that holds both maps.
 let baseMaps = {
   "Streets": streets,
-  "Satellite Streets": satelliteStreets
+  "Satellite": satelliteStreets
 };
 
-// Create the map object with center, zoom level and default layer.
+// Create the map object with US center, zoom level and default layer.
 let map = L.map('mapid', {
-  center: [43.7, -79.3],
-  zoom: 11,
-  layers: [satelliteStreets]
+  center: [39.5, -98.5],
+  zoom: 3,
+  layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
-// Accessing the Toronto neighborhoods GeoJSON URL.
-let torontoHoods = "https://raw.githubusercontent.com/krockway/Mapping_Earthquakes/Mapping_GeoJSON_Polygons/Mapping_GeoJSON_Polygons/static/data/torontoNeighborhoods.json";
+// Retrieve the earthquake GeoJSON data.
+let earthquake7day = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 // Create a style for the lines.
 let myStyle = {
@@ -48,7 +48,7 @@ let myStyle = {
 }
 
 // Grabbing our GeoJSON data & styling as element
-d3.json(torontoHoods).then(function(data) {
+d3.json(earthquake7day).then(function(data) {
   console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
   L.geoJson(data, {
