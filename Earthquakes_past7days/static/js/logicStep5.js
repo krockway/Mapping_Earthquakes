@@ -117,4 +117,32 @@ d3.json(earthquake7day).then(function(data) {
   earthquakes.addTo(map);
 });
 
+var legend = L.control({
+  position: 'bottomright'
+});
 
+legend.onAdd = function() {
+
+    let div = L.DomUtil.create('div', 'info legend');
+      magnitudes = [0, 1, 2, 3, 4, 5];
+      colors = [
+        "#98ee00",
+        "#d4ee00",
+        "#eecc00",
+        "#ee9c00",
+        "#ea822c",
+        "#ea2c2c"
+    ];
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < magnitudes.length; i++) {
+        console.log(colors[i]);
+        //Add color and text to div element
+        div.innerHTML +=
+        //Add color from colors array by styling the background of an <i> tag
+       "<i style='background: " + colors[i] + "'></i> " +
+       //Add the intervals (0-1, 1-2, etc)
+       magnitudes[i] + (magnitudes[i + 1] ? "&ndash;" + magnitudes[i + 1] + "<br>" : "+");
+  }
+    return div;
+  };
+legend.addTo(map);
