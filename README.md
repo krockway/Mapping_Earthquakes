@@ -14,11 +14,11 @@ First I created a map with the three desired layers (street view, satellite view
 
 Next, I retrieved the earthquake data from the US Geological Survey website, which uses an API to get a GeoJSON file containing [all earthquakes in the last seven days](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson).
 
-I then stylized the earthquake data by adding color and circle size to indicate the magnitude of each earthquake. I also added labels to each circle with the location and magnitude of each.
-
 To create a layer with only the largest earthquakes from this week, I used the API again to get a truncated GeoJSON file containing [all earthquakes with a magnitude greater than 4.5](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson).
 
-Lastly I created a [tectonic plate layer](https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json) based on supplied GeoJSON data.
+Next, I created a tectonic plate layer based on supplied GeoJSON [tectonic data](https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json).
+
+Finally, I stylized the earthquake data by adding color and circle size to indicate the magnitude, and added labels to each circle with the location and magnitude of each earthquake.
 
 ## Tools & Languages
 
