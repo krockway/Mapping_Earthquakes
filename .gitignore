@@ -1,6 +1,9 @@
 # Practice files
 Practice/*
 
+# API Key
+config.js
+
 # DS Store
 .DS_Store
 

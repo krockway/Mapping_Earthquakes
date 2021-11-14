@@ -2,7 +2,7 @@
 
 ## Purpose
 
-For this project, the goal is to map the latest earthquake data from the US Geological Survey website.
+The goal of this project is to map the last 7 days of earthquake data from the [US Geological Survey website](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php).
 
 The map features three layers that a user can choose between: street view, satellite view and dark view.
 
@@ -10,20 +10,27 @@ Additionally a user can toggle between any, or all, of the three types of map da
 
 ## Process
 
-Acquire data
+First I created a map with the three desired layers (street view, satellite view and dark view) and the ability to zoom the map in and out.
+
+Next, I retrieved the earthquake data from the US Geological Survey website, which uses an API to get a GeoJSON file containing [all earthquakes in the last seven days](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson).
+
+I then stylized the earthquake data by adding color and circle size to indicate the magnitude of each earthquake. I also added labels to each circle with the location and magnitude of each.
+
+To create a layer with only the largest earthquakes from this week, I used the API again to get a truncated GeoJSON file containing [all earthquakes with a magnitude greater than 4.5](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson).
+
+Lastly I created a [tectonic plate layer](https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json) based on supplied GeoJSON data.
 
 ## Tools & Languages
 
 * HTML
+* CSS
 * JavaScript
-* JSON
-* Plotly
+* APIs - Google Maps & Earthquake Magnitudes
+* GeoJSON
 
-## Analysis
+## Analysis & Results
 
-[Link to dashboard](https://krockway.github.io/Mapping_Earthquakes/)
-
-## Results
+[Link to maps](https://krockway.github.io/Mapping_Earthquakes/)
 
 The data within the map can be displayed in various ways. At any time, only 1 map style can show (street, satellite, or dark), but any of the map data can be turned on (all earthquakes, tectonic plates, or major earthquakes).
 
@@ -43,5 +50,4 @@ Here are a few possible views of the map:
 
 ## Challenges & Next Steps
 
-## Resources
-https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+Because the data source is constantly updated, it could be challenging for researchers to review this data and draw conclusions.
